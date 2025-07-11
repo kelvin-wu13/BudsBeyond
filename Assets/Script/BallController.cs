@@ -4,16 +4,18 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float maxRollSpeed = 8f;
-    public float accelerationSpeed = 15f;
-    public float decelerationSpeed = 10f;
-    public float rollDegreeMultiplier = 1f;
-    public float jumpSpeed = 12f;
-    public LayerMask groundLayer = 1;
+    [SerializeField] float maxRollSpeed = 8f;
+    [SerializeField] float accelerationSpeed = 15f;
+    [SerializeField] float decelerationSpeed = 10f;
+    [SerializeField] float rollDegreeMultiplier = 1f;
+    [SerializeField] float jumpSpeed = 12f;
+    [SerializeField] LayerMask groundLayer = 1;
 
     private Rigidbody2D rb;
     private CircleCollider2D cc;
+
     private MobileInputHandler mobileInput;
+    private MovingPlatform currentPlatform;
 
     float diameter;
     bool isGrounded;
@@ -31,6 +33,11 @@ public class BallController : MonoBehaviour
         isGrounded = cc.IsTouchingLayers(groundLayer);
 
         float horizontalInput = 0f;
+
+        if (currentPlatform != null && isGrounded)
+        {
+            transform.position += currentPlatform.platformDelta;
+        }
 
         if (mobileInput != null)
         {
@@ -52,6 +59,21 @@ public class BallController : MonoBehaviour
 
         Move(horizontalInput);
         AnimationUpdate();
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("MovingPlatform"))
+        {
+            currentPlatform = collision.gameObject.GetComponent<MovingPlatform>();
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("MovingPlatform"))
+        {
+            currentPlatform = null;
+        }
     }
 
     void AnimationUpdate()
@@ -79,12 +101,8 @@ public class BallController : MonoBehaviour
         else
         {
             // Apply deceleration when no input
-            if (Mathf.Abs(rb.linearVelocity.x) > 0.1f)
-            {
-                float deceleration = decelerationSpeed * Time.deltaTime;
-                float newVelocityX = Mathf.MoveTowards(rb.linearVelocity.x, 0, deceleration);
-                rb.linearVelocity = new Vector2(newVelocityX, rb.linearVelocity.y);
-            }
+            float newVelocityX = Mathf.MoveTowards(rb.linearVelocity.x, 0, decelerationSpeed * Time.deltaTime);
+            rb.linearVelocity = new Vector2(newVelocityX, rb.linearVelocity.y);
         }
     }
 
@@ -92,18 +110,7 @@ public class BallController : MonoBehaviour
     {
         if (!isGrounded) return;
 
-        List<ContactPoint2D> contacts = new List<ContactPoint2D>();
-        cc.GetContacts(contacts);
-
-        // Safety check to ensure we have contacts
-        if (contacts.Count > 0)
-        {
-            rb.linearVelocity += contacts[0].normal * jumpSpeed;
-        }
-        else
-        {
-            // Fallback jump if no contacts found
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpSpeed);
-        }
+        Vector2 currentVelocity = rb.linearVelocity;
+        rb.linearVelocity = new Vector2(currentVelocity.x, jumpSpeed);
     }
 }
