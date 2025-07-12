@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e55142a85f2634185b918e5591740b, type: 3}
   m_Name: Tappy
   m_EditorClassIdentifier: 
+  characterID: 0
+  characterName: Tappy
+  characterDisplayPrefab: {fileID: 0}
+  characterGamePrefab: {fileID: 0}
+  unlockPrice: 0
+  isUnlockedByDefault: 1
   jumpSpeed: 10
   powerUpPrefab: {fileID: 1347209321816359796, guid: ab1c87f590947f041beac11d4b8f7e02, type: 3}

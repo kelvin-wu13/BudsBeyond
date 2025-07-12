@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e55142a85f2634185b918e5591740b, type: 3}
   m_Name: Bam
   m_EditorClassIdentifier: 
+  characterID: 2
+  characterName: Bam
+  characterDisplayPrefab: {fileID: 0}
+  characterGamePrefab: {fileID: 0}
+  unlockPrice: 100
+  isUnlockedByDefault: 0
   jumpSpeed: 5
   powerUpPrefab: {fileID: 0}

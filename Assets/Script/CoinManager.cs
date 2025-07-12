@@ -32,6 +32,11 @@ public class CoinManager : MonoBehaviour
         UpdateCoinText();
     }
 
+    public int GetCoinsFromThisRun()
+    {
+        return coinsCollectedThisRun;
+    }
+
     private void UpdateCoinText()
     {
         coinText.text = coinsCollectedThisRun.ToString();

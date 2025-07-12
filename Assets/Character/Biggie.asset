@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e55142a85f2634185b918e5591740b, type: 3}
   m_Name: Biggie
   m_EditorClassIdentifier: 
+  characterID: 1
+  characterName: Biggie
+  characterDisplayPrefab: {fileID: 0}
+  characterGamePrefab: {fileID: 0}
+  unlockPrice: 50
+  isUnlockedByDefault: 0
   jumpSpeed: 5
   powerUpPrefab: {fileID: 0}

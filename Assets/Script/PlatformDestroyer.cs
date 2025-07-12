@@ -14,13 +14,13 @@ public class PlatformDestroyer : MonoBehaviour
         // Check if the object is the player
         if (other.CompareTag("Player"))
         {
-            // Reloads the current scene. Replace with your game over logic if needed.
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
-            if (playerController != null)
+            if (CoinManager.instance != null && CurrencySystem.instance != null)
             {
-                playerController.TakeDamage();
+                // Assuming your CoinManager has a public property for coins collected this run
+                int coinsFromRun = CoinManager.instance.GetCoinsFromThisRun(); // You'll need to add this function to CoinManager
+                CurrencySystem.instance.AddCoins(coinsFromRun);
             }
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }
