@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9e265d65e1641c64a8b71a88ed6fd519
+guid: 97a27a5571b881e4bbae1c588d93e7bc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3664673084553716565
-    second: Untitled_Artworksssd_0
+      213: -7701935903991916302
+    second: BG_Blue_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,43 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 2
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 2
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Untitled_Artworksssd_0
+      name: BG_Blue_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 2160
-        height: 4052
+        height: 4370
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bac9d31fe37742dc0800000000000000
-      internalID: -3664673084553716565
+      spriteID: 2f81cb71a1a3d1590800000000000000
+      internalID: -7701935903991916302
       vertices: []
       indices: 
       edges: []
@@ -161,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Untitled_Artworksssd_0: -3664673084553716565
+      BG_Blue_0: -7701935903991916302
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
