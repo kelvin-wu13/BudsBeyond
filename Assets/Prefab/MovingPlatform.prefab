@@ -149,5 +149,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveDistance: 3
   moveSpeed: 2
-  waitTime: 1
+  waitTime: 0.3
   platformDelta: {x: 0, y: 0, z: 0}
