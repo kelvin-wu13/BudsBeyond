@@ -3,44 +3,39 @@ using UnityEngine;
 
 public class PlatformSpawner : MonoBehaviour
 {
+
     [Header("Platform Prefabs")]
     public List<GameObject> normalPlatformPrefabs;
     public List<GameObject> trapPlatformPrefabs;
     public List<GameObject> movingPlatformPrefabs;
     public List<GameObject> launchPlatformPrefabs;
-
     [Header("Player Movement Settings")]
     public float maxPlayerJumpHeight = 4.0f;
     public float maxPlayerJumpWidth = 3.5f;
-
     [Header("Spawner Settings")]
     public Transform playerTransform;
     public int startingPlatformRows = 10;
     public float spawnOffset = 20f;
     public int maxPlatformsPerRow = 3;
-
     [Header("Spawn Probabilities")]
     [Range(0, 1)] public float trapSpawnChance = 0.1f;
     [Range(0, 1)] public float movingPlatformChance = 0.15f;
     [Range(0, 1)] public float launchPlatformChance = 0.2f;
-
     [Header("Power-up & Coin Settings")]
     public GameObject coinPrefab;
     [Range(0, 1)] public float coinSpawnChance = 0.3f;
     [Range(0, 1)] public float powerUpSpawnChance = 0.15f;
     public float objectYOffset = 0.8f;
-
     [Header("Positioning & Clearance")]
     public float horizontalRange = 4f;
     public float minYSpacing = 1.0f;
     public float maxYSpacing = 3.0f;
     public float platformWidth = 2.0f;
 
-    // --- Private Variables ---
     private Vector2 lastSafePlatformPosition;
     private float nextRowY;
     private bool didLastRowContainSpecial = false;
-    private float powerUpCooldownEndTime = 0f; // <-- NEW: Tracks when the power-up cooldown ends.
+    private float powerUpCooldownEndTime = 0f;
 
     void Start()
     {
@@ -63,9 +58,44 @@ public class PlatformSpawner : MonoBehaviour
         }
     }
 
+    void TrySpawnObjectOnPlatform(GameObject platform)
+    {
+        if (platform.CompareTag("TrapPlatform")) return;
+
+        float roll = Random.value;
+        if (roll < powerUpSpawnChance && Time.time >= powerUpCooldownEndTime)
+        {
+            PlayerController player = playerTransform.GetComponent<PlayerController>();
+            if (player != null)
+            {
+                CharacterData data = player.GetCharacterData();
+                if (data != null && data.powerUpPrefab != null)
+                {
+                    Vector3 spawnPos = platform.transform.position + new Vector3(0, objectYOffset, 0);
+                    Instantiate(data.powerUpPrefab, spawnPos, Quaternion.identity);
+
+                }
+            }
+        }
+        else if (roll < powerUpSpawnChance + coinSpawnChance)
+        {
+            if (coinPrefab != null)
+            {
+                Vector3 spawnPos = platform.transform.position + new Vector3(0, objectYOffset, 0);
+                Instantiate(coinPrefab, spawnPos, Quaternion.identity);
+            }
+        }
+    }
+
+    private void StartPowerUpCooldown()
+    {
+        float cooldownDuration = Random.Range(5f, 7f);
+        powerUpCooldownEndTime = Time.time + cooldownDuration;
+        Debug.Log($"Power-up collected! Cooldown started for {cooldownDuration:F1} seconds.");
+    }
+
     void SpawnPlatformRow()
     {
-        // This method remains the same as before.
         nextRowY += Random.Range(minYSpacing, maxYSpacing);
         int platformsToSpawn = Random.Range(1, maxPlatformsPerRow + 1);
         var spawnedPositionsInRow = new List<Vector2>();
@@ -97,7 +127,6 @@ public class PlatformSpawner : MonoBehaviour
 
     bool SpawnPlatform(bool forceNormal, ref List<Vector2> spawnedPositionsInRow)
     {
-        // This method remains the same as before.
         int attempts = 0;
         while (attempts < 10)
         {
@@ -111,6 +140,13 @@ public class PlatformSpawner : MonoBehaviour
             {
                 var (prefab, isSpecial) = ChoosePlatform(forceNormal);
                 GameObject newPlatform = Instantiate(prefab, potentialPosition, Quaternion.identity);
+
+                if (ScoreManager.instance != null)
+                {
+                    ScoreManager.instance.RegisterPlatform(newPlatform.transform);
+                }
+                // --------------------------------
+
                 TrySpawnObjectOnPlatform(newPlatform);
 
                 spawnedPositionsInRow.Add(potentialPosition);
@@ -126,45 +162,8 @@ public class PlatformSpawner : MonoBehaviour
         return false;
     }
 
-    // --- UPDATED METHOD: Now includes a cooldown check for power-ups ---
-    void TrySpawnObjectOnPlatform(GameObject platform)
-    {
-        if (platform.CompareTag("TrapPlatform")) return;
-
-        float roll = Random.value;
-
-        // Check for a power-up first, but only if the cooldown has expired.
-        if (roll < powerUpSpawnChance && Time.time >= powerUpCooldownEndTime)
-        {
-            PlayerController player = playerTransform.GetComponent<PlayerController>();
-            if (player != null)
-            {
-                CharacterData data = player.GetCharacterData();
-                if (data != null && data.powerUpPrefab != null)
-                {
-                    Vector3 spawnPos = platform.transform.position + new Vector3(0, objectYOffset, 0);
-                    Instantiate(data.powerUpPrefab, spawnPos, Quaternion.identity);
-
-                    // --- NEW: Set the cooldown for the next power-up spawn ---
-                    float cooldownDuration = Random.Range(5f, 7f);
-                    powerUpCooldownEndTime = Time.time + cooldownDuration;
-                }
-            }
-        }
-        // If a power-up didn't spawn (either by chance or cooldown), check for a coin.
-        else if (roll < powerUpSpawnChance + coinSpawnChance)
-        {
-            if (coinPrefab != null)
-            {
-                Vector3 spawnPos = platform.transform.position + new Vector3(0, objectYOffset, 0);
-                Instantiate(coinPrefab, spawnPos, Quaternion.identity);
-            }
-        }
-    }
-
     (GameObject prefab, bool isSpecial) ChoosePlatform(bool forceNormal)
     {
-        // This method remains the same as before.
         if (forceNormal)
         {
             return (normalPlatformPrefabs[Random.Range(0, normalPlatformPrefabs.Count)], false);
@@ -180,7 +179,6 @@ public class PlatformSpawner : MonoBehaviour
 
     bool IsPositionSafe(Vector2 position, List<Vector2> otherPositions)
     {
-        // This method remains the same as before.
         foreach (var pos in otherPositions)
         {
             if (Mathf.Abs(position.x - pos.x) < platformWidth)

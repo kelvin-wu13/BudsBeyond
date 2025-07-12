@@ -46,7 +46,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // --- (ActivateShield and TakeDamage methods remain the same) ---
     public void ActivateShield()
     {
         hasShield = true;
@@ -110,17 +109,7 @@ public class PlayerController : MonoBehaviour
         bool isGroundContact = (groundLayer.value & (1 << collision.gameObject.layer)) > 0;
         if (isGroundContact && rb.linearVelocity.y <= 0.1f)
         {
-            // Now, check if this specific ground object is a NON-bouncy platform.
-            if (collision.gameObject.CompareTag("Platform"))
-            {
-                // This is a non-bouncy platform, so we just land on it. Do nothing here.
-                Debug.Log("Landed on a non-bouncy platform.");
-            }
-            else
-            {
-                // It's any other type of ground, so we bounce!
-                Jump();
-            }
+            Jump();
         }
 
         // Handle moving platform logic as before.
