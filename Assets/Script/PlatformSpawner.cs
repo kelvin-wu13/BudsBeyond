@@ -111,8 +111,14 @@ public class PlatformSpawner : MonoBehaviour
         }
         else
         {
-            SpawnPlatform(true, ref spawnedPositionsInRow);
+            // By changing 'true' to 'false', the first platform can now be special.
+            bool wasFirstPlatformSpecial = SpawnPlatform(false, ref spawnedPositionsInRow);
+            if (wasFirstPlatformSpecial)
+            {
+                specialWasSpawnedThisRow = true;
+            }
 
+            // The rest of the loop remains the same.
             for (int i = 1; i < platformsToSpawn; i++)
             {
                 bool wasSpecial = SpawnPlatform(false, ref spawnedPositionsInRow);
@@ -125,7 +131,7 @@ public class PlatformSpawner : MonoBehaviour
         }
     }
 
-    bool SpawnPlatform(bool forceNormal, ref List<Vector2> spawnedPositionsInRow)
+        bool SpawnPlatform(bool forceNormal, ref List<Vector2> spawnedPositionsInRow)
     {
         int attempts = 0;
         while (attempts < 10)
@@ -145,7 +151,6 @@ public class PlatformSpawner : MonoBehaviour
                 {
                     ScoreManager.instance.RegisterPlatform(newPlatform.transform);
                 }
-                // --------------------------------
 
                 TrySpawnObjectOnPlatform(newPlatform);
 
@@ -170,10 +175,30 @@ public class PlatformSpawner : MonoBehaviour
         }
 
         float roll = Random.value;
-        if (roll < movingPlatformChance) return (movingPlatformPrefabs[Random.Range(0, movingPlatformPrefabs.Count)], true);
-        if (roll < movingPlatformChance + launchPlatformChance) return (launchPlatformPrefabs[Random.Range(0, launchPlatformPrefabs.Count)], true);
-        if (roll < movingPlatformChance + launchPlatformChance + trapSpawnChance) return (trapPlatformPrefabs[Random.Range(0, trapPlatformPrefabs.Count)], true);
+        float cumulativeProbability = 0f;
 
+        // Check for Trap Platforms first (10% chance)
+        cumulativeProbability += trapSpawnChance;
+        if (roll < cumulativeProbability && trapPlatformPrefabs.Count > 0)
+        {
+            return (trapPlatformPrefabs[Random.Range(0, trapPlatformPrefabs.Count)], true);
+        }
+
+        // Check for Moving Platforms (15% chance)
+        cumulativeProbability += movingPlatformChance;
+        if (roll < cumulativeProbability && movingPlatformPrefabs.Count > 0)
+        {
+            return (movingPlatformPrefabs[Random.Range(0, movingPlatformPrefabs.Count)], true);
+        }
+
+        // Check for Launch Platforms (20% chance)
+        cumulativeProbability += launchPlatformChance;
+        if (roll < cumulativeProbability && launchPlatformPrefabs.Count > 0)
+        {
+            return (launchPlatformPrefabs[Random.Range(0, launchPlatformPrefabs.Count)], true);
+        }
+
+        // If no special platform was chosen, spawn a normal one.
         return (normalPlatformPrefabs[Random.Range(0, normalPlatformPrefabs.Count)], false);
     }
 
