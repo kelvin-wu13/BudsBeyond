@@ -1013,7 +1013,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1578931610
 Transform:
   m_ObjectHideFlags: 0
@@ -1045,18 +1045,20 @@ MonoBehaviour:
   - {fileID: 298343536420511887, guid: 9358f2e65820baf4bb8e97918882daef, type: 3}
   trapPlatformPrefabs:
   - {fileID: 5659128869610067455, guid: deef97982fa565d4588199de39cfcf03, type: 3}
+  - {fileID: 7479543639271320965, guid: b1f65cdae001c914e9ee54ac056d2efe, type: 3}
   movingPlatformPrefabs:
   - {fileID: 133384066637194296, guid: 00a42c26879d9724b950395f37b020e9, type: 3}
   launchPlatformPrefabs:
   - {fileID: 5159049370128892752, guid: 40ce34c302355344eb0cdb3afc614371, type: 3}
+  - {fileID: 441795946582696684, guid: ab8656d2023b6c04e86767a5ee7c1f03, type: 3}
   playerTransform: {fileID: 1830507822}
-  startingPlatforms: 25
+  startingPlatforms: 10
   spawnOffset: 10
   trapSpawnChance: 0.1
   movingPlatformChance: 0.15
-  launchPlatformChance: 0.2
+  launchPlatformChance: 0.25
   horizontalRange: 4
-  minYSpacing: 1
+  minYSpacing: 1.5
   maxYSpacing: 3
 --- !u!1 &1619645326
 GameObject:
