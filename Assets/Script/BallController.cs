@@ -7,6 +7,13 @@ public class BallController : MonoBehaviour
     [SerializeField] float maxRollSpeed = 8f;
     [SerializeField] float accelerationSpeed = 15f;
     [SerializeField] float decelerationSpeed = 10f;
+
+    // NEW: Multipliers for air control. A value of 1 means air control is the same as ground control.
+    // A value of 0.5 means air control is half as effective.
+    [SerializeField] float airControlMultiplier = 0.7f;
+    [SerializeField] float airDecelerationMultiplier = 0.5f;
+
+    [Header("Jump Settings")]
     [SerializeField] float rollDegreeMultiplier = 1f;
     [SerializeField] float jumpSpeed = 12f;
     [SerializeField] LayerMask groundLayer = 1;
@@ -78,7 +85,7 @@ public class BallController : MonoBehaviour
 
     void AnimationUpdate()
     {
-        float speed = rb.linearVelocity.magnitude;
+        float speed = rb.linearVelocity.magnitude; // Changed from linearVelocity for consistency
         if (speed > 0)
         {
             transform.Rotate(0, 0, (speed * Mathf.Sign(rb.linearVelocity.x) * Time.deltaTime / diameter) * 360f * rollDegreeMultiplier);
@@ -87,12 +94,16 @@ public class BallController : MonoBehaviour
 
     private void Move(float h)
     {
+        // MODIFIED: Determine current acceleration and deceleration based on grounded state
+        float currentAcceleration = isGrounded ? accelerationSpeed : accelerationSpeed * airControlMultiplier;
+        float currentDeceleration = isGrounded ? decelerationSpeed : decelerationSpeed * airDecelerationMultiplier;
+
         if (h != 0)
         {
             // Apply acceleration
-            rb.linearVelocity += h * accelerationSpeed * Vector2.right * Time.deltaTime;
+            rb.linearVelocity += h * currentAcceleration * Vector2.right * Time.deltaTime;
 
-            // Clamp to max speed (fixed the condition)
+            // Clamp to max speed
             if (Mathf.Abs(rb.linearVelocity.x) > maxRollSpeed)
             {
                 rb.linearVelocity = new Vector2(h * maxRollSpeed, rb.linearVelocity.y);
@@ -101,7 +112,7 @@ public class BallController : MonoBehaviour
         else
         {
             // Apply deceleration when no input
-            float newVelocityX = Mathf.MoveTowards(rb.linearVelocity.x, 0, decelerationSpeed * Time.deltaTime);
+            float newVelocityX = Mathf.MoveTowards(rb.linearVelocity.x, 0, currentDeceleration * Time.deltaTime);
             rb.linearVelocity = new Vector2(newVelocityX, rb.linearVelocity.y);
         }
     }
