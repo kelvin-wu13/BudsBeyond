@@ -1,21 +1,26 @@
-// Import the TextMeshPro library to work with UI Text
-using System.Drawing;
-using TMPro;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
 
-    // Drag your UI Text element here in the Inspector
-    public TextMeshProUGUI pointText;
+    [Header("Tracking")]
+    [Tooltip("Drag the player's GameObject here to track its position.")]
+    public Transform playerTransform;
 
-    private int currentPoints = 0;
-    private int maxPoints;
+    [Header("UI")]
+    [Tooltip("Drag the TextMeshPro UI element that will display the score.")]
+    public TextMeshProUGUI scoreText;
+
+    private int currentScore = 0;
+    // A list of platforms that are above the player and have not yet been scored.
+    private List<Transform> unscoredPlatforms = new List<Transform>();
 
     void Awake()
     {
-        // Set up the singleton instance
         if (instance == null)
         {
             instance = this;
@@ -28,27 +33,31 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        maxPoints = FindObjectsOfType<Points>().Length;
-
-
-        // Initialize the UI text at the start of the game
-        UpdatePointText();
+        scoreText.text = "0";
     }
 
-    public void AddPoint()
+    void Update()
     {
-        currentPoints++;
-        UpdatePointText();
+        if (playerTransform == null) return;
 
-        if (currentPoints >= maxPoints)
+        // Use a while loop in case the player passes multiple platforms in a single frame.
+        // It checks if the player is higher than the lowest platform in the unscored list.
+        while (unscoredPlatforms.Count > 0 && playerTransform.position.y > unscoredPlatforms[0].position.y)
         {
-            Debug.Log("You collected all the points!");
+            currentScore++;
+            scoreText.text = currentScore.ToString();
+
+            // Remove the platform we just passed so it is not counted again.
+            unscoredPlatforms.RemoveAt(0);
         }
     }
 
-    // A dedicated method to update the text display
-    private void UpdatePointText()
+    // Called by the PlatformSpawner to add a new platform to our list.
+    public void RegisterPlatform(Transform platformTransform)
     {
-        pointText.text = $"{currentPoints} / {maxPoints}";
+        unscoredPlatforms.Add(platformTransform);
+
+        // Sort the list by Y position to ensure we are always checking against the lowest platform first.
+        unscoredPlatforms = unscoredPlatforms.OrderBy(p => p.position.y).ToList();
     }
 }

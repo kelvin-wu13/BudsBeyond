@@ -2,12 +2,10 @@ using System;
 using UnityEngine;
 
 // This is the helper class that defines what a "Sound" is.
-// Since it's in the same file, you don't need a separate Sound.cs script.
 [System.Serializable]
 public class Sound
 {
     public string name; // Name to identify the sound
-
     public AudioClip clip; // The audio file
 
     [Range(0f, 1f)]
@@ -25,15 +23,13 @@ public class Sound
 // This is the main manager class.
 public class AudioManager : MonoBehaviour
 {
-    // Singleton instance for easy access from other scripts
     public static AudioManager instance;
 
-    // Arrays to hold your BGM and SFX sounds
     public Sound[] backgroundMusic;
     public Sound[] soundEffects;
 
-    // Dedicated AudioSource for BGM to prevent it from being stopped by an SFX
-    public AudioSource bgmSource;
+    // The script now manages this internally, so it's private.
+    private AudioSource bgmSource;
 
     void Awake()
     {
@@ -47,10 +43,13 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        DontDestroyOnLoad(gameObject); // Persists across scenes
+        DontDestroyOnLoad(gameObject);
+
+        // --- Create the BGM AudioSource automatically ---
+        bgmSource = gameObject.AddComponent<AudioSource>();
+        bgmSource.playOnAwake = false; // We control playback manually
 
         // --- Create AudioSources for SFX ---
-        // We create an AudioSource component on this GameObject for each SFX clip
         foreach (Sound s in soundEffects)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -63,15 +62,9 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        // Example: Play the first BGM track when the game starts
-        PlayBGM("Theme"); // Make sure you have a BGM named "Theme"
+        PlayBGM("Main Menu");
     }
 
-    // --- Public Methods to Play Sounds ---
-
-    /// <summary>
-    /// Plays a background music track by name.
-    /// </summary>
     public void PlayBGM(string name)
     {
         Sound s = Array.Find(backgroundMusic, sound => sound.name == name);
@@ -88,9 +81,6 @@ public class AudioManager : MonoBehaviour
         bgmSource.Play();
     }
 
-    /// <summary>
-    /// Plays a sound effect by name.
-    /// </summary>
     public void PlaySFX(string name)
     {
         Sound s = Array.Find(soundEffects, sound => sound.name == name);
@@ -99,8 +89,6 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound effect not found: " + name);
             return;
         }
-
-        // We use PlayOneShot for SFX so multiple sounds can overlap
         s.source.PlayOneShot(s.clip, s.volume);
     }
 }
