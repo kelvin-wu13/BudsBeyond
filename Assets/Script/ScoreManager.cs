@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using TMPro;
 
@@ -8,11 +7,9 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager instance;
 
     [Header("Tracking")]
-    [Tooltip("Drag the player's GameObject here to track its position.")]
     public Transform playerTransform;
 
     [Header("UI")]
-    [Tooltip("Drag the TextMeshPro UI element that will display the score.")]
     public TextMeshProUGUI scoreText;
 
     private int currentScore = 0;
@@ -39,6 +36,11 @@ public class ScoreManager : MonoBehaviour
     {
         if (playerTransform == null) return;
 
+        while (unscoredPlatforms.Count > 0 && unscoredPlatforms[0] == null)
+        {
+            unscoredPlatforms.RemoveAt(0);
+        }
+
         while (unscoredPlatforms.Count > 0 && playerTransform.position.y > unscoredPlatforms[0].position.y)
         {
             currentScore++;
@@ -51,7 +53,5 @@ public class ScoreManager : MonoBehaviour
     public void RegisterPlatform(Transform platformTransform)
     {
         unscoredPlatforms.Add(platformTransform);
-
-        unscoredPlatforms = unscoredPlatforms.OrderBy(p => p.position.y).ToList();
     }
 }

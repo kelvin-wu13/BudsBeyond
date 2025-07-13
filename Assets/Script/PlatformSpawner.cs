@@ -154,6 +154,10 @@ public class PlatformSpawner : MonoBehaviour
                 {
                     ScoreManager.instance.RegisterPlatform(newPlatform.transform);
                 }
+                else
+                {
+                    Debug.LogError("ScoreManager instance is MISSING. Cannot register platform for scoring!");
+                }
 
                 TrySpawnObjectOnPlatform(newPlatform);
 
