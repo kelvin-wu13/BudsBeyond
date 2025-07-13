@@ -12,7 +12,6 @@ public class PowerUpSpawner : MonoBehaviour
                 CharacterData characterData = playerController.GetCharacterData();
                 if (characterData != null && characterData.powerUpPrefab != null)
                 {
-                    // Spawn power-up slightly above the platform
                     Vector3 spawnPosition = transform.position + new Vector3(0, 0.5f, 0);
                     Instantiate(characterData.powerUpPrefab, spawnPosition, Quaternion.identity);
                 }

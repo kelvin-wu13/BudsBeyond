@@ -1,26 +1,25 @@
 using System;
 using UnityEngine;
 
-// This is the helper class that defines what a "Sound" is.
+
 [System.Serializable]
 public class Sound
 {
-    public string name; // Name to identify the sound
-    public AudioClip clip; // The audio file
+    public string name;
+    public AudioClip clip;
 
     [Range(0f, 1f)]
-    public float volume = 1f; // Volume control for this specific clip
+    public float volume = 1f;
 
     [Range(0.1f, 3f)]
-    public float pitch = 1f; // Pitch control for this specific clip
+    public float pitch = 1f;
 
-    public bool loop = false; // Should the sound loop?
+    public bool loop = false;
 
     [HideInInspector]
-    public AudioSource source; // The AudioSource component that will play this sound
+    public AudioSource source;
 }
 
-// This is the main manager class.
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
@@ -28,12 +27,10 @@ public class AudioManager : MonoBehaviour
     public Sound[] backgroundMusic;
     public Sound[] soundEffects;
 
-    // The script now manages this internally, so it's private.
     private AudioSource bgmSource;
 
     void Awake()
     {
-        // --- Singleton Pattern Setup ---
         if (instance == null)
         {
             instance = this;
@@ -45,11 +42,9 @@ public class AudioManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
 
-        // --- Create the BGM AudioSource automatically ---
         bgmSource = gameObject.AddComponent<AudioSource>();
-        bgmSource.playOnAwake = false; // We control playback manually
+        bgmSource.playOnAwake = false;
 
-        // --- Create AudioSources for SFX ---
         foreach (Sound s in soundEffects)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -77,7 +72,7 @@ public class AudioManager : MonoBehaviour
         bgmSource.clip = s.clip;
         bgmSource.volume = s.volume;
         bgmSource.pitch = s.pitch;
-        bgmSource.loop = true; // BGM almost always loops
+        bgmSource.loop = true;
         bgmSource.Play();
     }
 

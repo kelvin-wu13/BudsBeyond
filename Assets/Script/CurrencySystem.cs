@@ -9,11 +9,10 @@ public class CurrencySystem : MonoBehaviour
 
     void Awake()
     {
-        // Singleton pattern to ensure only one instance exists
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // Don't destroy this object when loading new scenes
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -21,7 +20,6 @@ public class CurrencySystem : MonoBehaviour
             return;
         }
 
-        // Load the total coins from device memory
         TotalCoins = PlayerPrefs.GetInt(COIN_SAVE_KEY, 0);
     }
 
@@ -39,8 +37,8 @@ public class CurrencySystem : MonoBehaviour
             TotalCoins -= amount;
             PlayerPrefs.SetInt(COIN_SAVE_KEY, TotalCoins);
             PlayerPrefs.Save();
-            return true; // Purchase successful
+            return true;
         }
-        return false; // Not enough coins
+        return false;
     }
 }

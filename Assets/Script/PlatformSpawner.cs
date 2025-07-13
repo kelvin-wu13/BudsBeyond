@@ -45,7 +45,6 @@ public class PlatformSpawner : MonoBehaviour
     public void ActivateSpawner()
     {
         lastSafePlatformPosition = transform.position;
-        // We will spawn the first platform here instead
         GameObject firstPlatform = Instantiate(normalPlatformPrefabs[0], transform.position, Quaternion.identity);
         TrySpawnObjectOnPlatform(firstPlatform);
         nextRowY = transform.position.y;
@@ -117,14 +116,12 @@ public class PlatformSpawner : MonoBehaviour
         }
         else
         {
-            // By changing 'true' to 'false', the first platform can now be special.
             bool wasFirstPlatformSpecial = SpawnPlatform(false, ref spawnedPositionsInRow);
             if (wasFirstPlatformSpecial)
             {
                 specialWasSpawnedThisRow = true;
             }
 
-            // The rest of the loop remains the same.
             for (int i = 1; i < platformsToSpawn; i++)
             {
                 bool wasSpecial = SpawnPlatform(false, ref spawnedPositionsInRow);
@@ -183,28 +180,24 @@ public class PlatformSpawner : MonoBehaviour
         float roll = Random.value;
         float cumulativeProbability = 0f;
 
-        // Check for Trap Platforms first (10% chance)
         cumulativeProbability += trapSpawnChance;
         if (roll < cumulativeProbability && trapPlatformPrefabs.Count > 0)
         {
             return (trapPlatformPrefabs[Random.Range(0, trapPlatformPrefabs.Count)], true);
         }
 
-        // Check for Moving Platforms (15% chance)
         cumulativeProbability += movingPlatformChance;
         if (roll < cumulativeProbability && movingPlatformPrefabs.Count > 0)
         {
             return (movingPlatformPrefabs[Random.Range(0, movingPlatformPrefabs.Count)], true);
         }
 
-        // Check for Launch Platforms (20% chance)
         cumulativeProbability += launchPlatformChance;
         if (roll < cumulativeProbability && launchPlatformPrefabs.Count > 0)
         {
             return (launchPlatformPrefabs[Random.Range(0, launchPlatformPrefabs.Count)], true);
         }
 
-        // If no special platform was chosen, spawn a normal one.
         return (normalPlatformPrefabs[Random.Range(0, normalPlatformPrefabs.Count)], false);
     }
 

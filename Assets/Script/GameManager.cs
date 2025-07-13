@@ -1,4 +1,4 @@
-using System.Collections; // Required for Coroutines
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -23,27 +23,21 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // Initial scene state remains the same
         initialBackground.SetActive(true);
         mainGameplayBackground.SetActive(false);
         platformSpawner.enabled = false;
         backgroundFollower.enabled = false;
     }
 
-    // This function is still called by the LaunchPad instantly
     public void StartGameplay()
     {
-        // But now, it just starts the delayed routine
         StartCoroutine(StartGameplayRoutine());
     }
 
-    // This is the new coroutine that contains the delay
     private IEnumerator StartGameplayRoutine()
     {
-        // 1. Wait for the specified amount of time
         yield return new WaitForSeconds(gameplayStartDelay);
 
-        // 2. After waiting, execute the rest of the logic
         initialBackground.SetActive(false);
         mainGameplayBackground.SetActive(true);
 

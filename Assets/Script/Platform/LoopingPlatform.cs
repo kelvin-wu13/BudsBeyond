@@ -28,7 +28,6 @@ public class LoopingPlatform : MonoBehaviour
 
     void Start()
     {
-        // Get components needed for the transition
         spriteRenderer = GetComponent<SpriteRenderer>();
         platformCollider = GetComponent<Collider2D>();
 
@@ -44,16 +43,13 @@ public class LoopingPlatform : MonoBehaviour
 
     void Update()
     {
-        // Only move the platform if it's not currently fading in or out
         if (!isTransitioning)
         {
             transform.Translate(moveDirection.normalized * moveSpeed * Time.deltaTime);
         }
 
-        // Check if the platform has passed the end point and is not already transitioning
         if (HasPassedEndPoint() && !isTransitioning)
         {
-            // Start the fade out -> teleport -> fade in process
             StartCoroutine(TransitionRoutine());
         }
     }
@@ -83,7 +79,7 @@ public class LoopingPlatform : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float newAlpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / transitionDuration);
             spriteRenderer.color = new Color(color.r, color.g, color.b, newAlpha);
-            yield return null; // Wait for the next frame
+            yield return null;
         }
 
         spriteRenderer.color = new Color(color.r, color.g, color.b, endAlpha);

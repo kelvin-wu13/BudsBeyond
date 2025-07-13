@@ -154,6 +154,7 @@ Transform:
   - {fileID: 468203807834670918}
   - {fileID: 2045757893}
   - {fileID: 1981313341}
+  - {fileID: 1119979174}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &286116514
@@ -757,6 +758,63 @@ Transform:
   - {fileID: 4595220480071796269}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1119979173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1119979174}
+  - component: {fileID: 1119979175}
+  m_Layer: 0
+  m_Name: CloudSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1119979174
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119979173}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 251166265}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1119979175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119979173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d765a23569de5fc448fa5a9be5f6fd8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cloudPrefab: {fileID: 5443051278046733759, guid: b55ed6ff6f1406a4d8f9d78965dd458d, type: 3}
+  cloudSprites:
+  - {fileID: 2669142961033076756, guid: 3b459dead90a55b4d9fcdbb02bf266b3, type: 3}
+  - {fileID: -3967920315399815954, guid: 3b459dead90a55b4d9fcdbb02bf266b3, type: 3}
+  - {fileID: -1749161583622989117, guid: 3b459dead90a55b4d9fcdbb02bf266b3, type: 3}
+  - {fileID: -5240784962635489071, guid: 3b459dead90a55b4d9fcdbb02bf266b3, type: 3}
+  minSpawnInterval: 3
+  maxSpawnInterval: 7
+  verticalSpawnRange: 10
+  minSpeed: 0.5
+  maxSpeed: 2
+  minScale: 0.8
+  maxScale: 1.5
 --- !u!1 &1297474084
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,7 +1103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1619645327
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1087,8 +1145,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 482419829
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: -3664673084553716565, guid: 9e265d65e1641c64a8b71a88ed6fd519, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1729,8 +1787,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 482419829
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: -7701935903991916302, guid: 97a27a5571b881e4bbae1c588d93e7bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

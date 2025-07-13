@@ -11,7 +11,7 @@ public class MainMenuManager : MonoBehaviour
 
     [Header("Character Selection")]
     public List<CharacterData> characterList;
-    public Transform characterDisplayPoint; // An empty GameObject where the character model will spawn
+    public Transform characterDisplayPoint;
 
     [Header("UI References")]
     public TextMeshProUGUI totalCoinsText;
@@ -23,7 +23,6 @@ public class MainMenuManager : MonoBehaviour
 
     void Start()
     {
-        // Set initial UI state
         UpdateCharacterSelection();
         UpdateCoinDisplay();
     }
@@ -38,14 +37,11 @@ public class MainMenuManager : MonoBehaviour
 
     private void UpdateCharacterSelection()
     {
-        // Get the currently selected character's data
         CharacterData currentCharacter = characterList[selectedCharacterIndex];
 
-        // Display the character model
         if (currentCharacterInstance != null) Destroy(currentCharacterInstance);
         currentCharacterInstance = Instantiate(currentCharacter.characterDisplayPrefab, characterDisplayPoint);
 
-        // Check if the character is unlocked
         bool isUnlocked = PlayerPrefs.GetInt(currentCharacter.characterID, 0) == 1 || currentCharacter.isUnlockedByDefault;
 
         if (isUnlocked)
@@ -83,22 +79,19 @@ public class MainMenuManager : MonoBehaviour
         CharacterData currentCharacter = characterList[selectedCharacterIndex];
         if (CurrencySystem.instance.SpendCoins(currentCharacter.unlockPrice))
         {
-            // Purchase successful
-            PlayerPrefs.SetInt(currentCharacter.characterID, 1); // Save unlocked state
+            PlayerPrefs.SetInt(currentCharacter.characterID, 1);
             PlayerPrefs.Save();
-            UpdateCharacterSelection(); // Refresh the UI
-            UpdateCoinDisplay(); // Refresh coin display
+            UpdateCharacterSelection();
+            UpdateCoinDisplay();
         }
         else
         {
-            // Not enough coins
             Debug.Log("Not enough coins to unlock " + currentCharacter.characterName);
         }
     }
 
     private void PlayGame()
     {
-        // Save which character was selected so the game scene can load it
         PlayerPrefs.SetString("SelectedCharacterID", characterList[selectedCharacterIndex].characterID);
         SceneManager.LoadScene(gameSceneName);
     }

@@ -26,7 +26,6 @@ public class PlayerSpawner : MonoBehaviour
             playerInstance = Instantiate(defaultCharacter.characterGamePrefab, spawnPoint.position, Quaternion.identity);
         }
 
-        // Tell the camera to follow the new player
         if (mainCameraFollow != null && playerInstance != null)
         {
             mainCameraFollow.target = playerInstance.transform;

@@ -9,10 +9,8 @@ public class ShieldPowerUp : MonoBehaviour
             PlayerController playerController = other.GetComponent<PlayerController>();
             if (playerController != null)
             {
-                // Call the public method on the BallController to activate the shield
                 playerController.ActivateShield();
 
-                // Destroy the power-up object after it has been collected
                 Destroy(gameObject);
             }
         }

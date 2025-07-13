@@ -29,8 +29,6 @@ public class PlayerController : MonoBehaviour
     private bool hasShield = false;
     float diameter;
     bool isGrounded;
-    // wasGroundedLastFrame is no longer needed for bounce logic but can be kept for other features
-    // bool wasGroundedLastFrame; 
 
     void Start()
     {
@@ -38,7 +36,6 @@ public class PlayerController : MonoBehaviour
         cc = GetComponent<CircleCollider2D>();
         mobileInput = GetComponent<MobileInputHandler>();
         diameter = 2 * Mathf.PI * cc.radius;
-        // wasGroundedLastFrame = true;
 
         if (shieldVisual != null)
         {
@@ -76,14 +73,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Update the isGrounded status for movement calculations
         isGrounded = cc.IsTouchingLayers(groundLayer);
-
-        // Manual jump logic is removed from here.
-        // if (Input.GetButtonDown("Jump") && isGrounded)
-        // {
-        //     Jump();
-        // }
 
         float horizontalInput = (mobileInput != null) ? mobileInput.moveDirection : Input.GetAxisRaw("Horizontal");
 
@@ -96,23 +86,14 @@ public class PlayerController : MonoBehaviour
         AnimationUpdate();
     }
 
-    // LateUpdate is no longer needed for wasGroundedLastFrame bounce logic
-    // void LateUpdate()
-    // {
-    //     wasGroundedLastFrame = isGrounded;
-    // }
-
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // --- NEW: Automatic Bounce Logic ---
-        // Check if the object we hit is on the ground layer AND we are falling onto it.
         bool isGroundContact = (groundLayer.value & (1 << collision.gameObject.layer)) > 0;
         if (isGroundContact && rb.linearVelocity.y <= 0.1f)
         {
             Jump();
         }
 
-        // Handle moving platform logic as before.
         if (collision.gameObject.CompareTag("MovingPlatform"))
         {
             currentPlatform = collision.gameObject.GetComponent<MovingPlatform>();
@@ -159,7 +140,6 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         if (characterData == null) return;
-        // Use a fixed bounce speed from the Character Data.
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, characterData.jumpSpeed);
     }
 
