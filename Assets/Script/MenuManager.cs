@@ -7,7 +7,7 @@ using TMPro;
 public class MainMenuManager : MonoBehaviour
 {
     [Header("Scene To Load")]
-    public string gameSceneName = "GameScene";
+    public string gameSceneName = "Tester";
 
     [Header("Character Selection")]
     public List<CharacterData> characterList;

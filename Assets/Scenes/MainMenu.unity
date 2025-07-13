@@ -193,8 +193,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -211,15 +211,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -284,8 +284,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5649133845250028513}
-  - {fileID: 4511272073765079612}
   - {fileID: 3449294769577977244}
   - {fileID: 468203807834670918}
   - {fileID: 319071789}
@@ -355,7 +353,6 @@ GameObject:
   m_Component:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
-  - component: {fileID: 519420033}
   - component: {fileID: 519420029}
   m_Layer: 0
   m_Name: Main Camera
@@ -439,19 +436,6 @@ Transform:
   - {fileID: 1062150722}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &519420033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1de442b8e2fb54943b6bdb3af160aa0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!1 &571827128
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,7 +1511,7 @@ Transform:
   m_GameObject: {fileID: 1454605338}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 550, y: 1050, z: 0}
+  m_LocalPosition: {x: 0.01, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2605,45 +2589,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 251166265}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3589395693072309232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6203987245793494649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e18898a784f2f8f46b7b2ebba2513d00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalPlatformPrefabs:
-  - {fileID: 298343536420511887, guid: 9358f2e65820baf4bb8e97918882daef, type: 3}
-  trapPlatformPrefabs:
-  - {fileID: 5659128869610067455, guid: deef97982fa565d4588199de39cfcf03, type: 3}
-  - {fileID: 7479543639271320965, guid: b1f65cdae001c914e9ee54ac056d2efe, type: 3}
-  movingPlatformPrefabs:
-  - {fileID: 133384066637194296, guid: 00a42c26879d9724b950395f37b020e9, type: 3}
-  launchPlatformPrefabs:
-  - {fileID: 5159049370128892752, guid: 40ce34c302355344eb0cdb3afc614371, type: 3}
-  - {fileID: 441795946582696684, guid: ab8656d2023b6c04e86767a5ee7c1f03, type: 3}
-  maxPlayerJumpHeight: 4
-  maxPlayerJumpWidth: 3.5
-  playerTransform: {fileID: 0}
-  startingPlatformRows: 10
-  spawnOffset: 5
-  maxPlatformsPerRow: 1
-  trapSpawnChance: 0.1
-  movingPlatformChance: 0.15
-  launchPlatformChance: 0.25
-  coinPrefab: {fileID: 262670941918360444, guid: 0cd0b8eaed30c5b428e6a7dc787f75fc, type: 3}
-  coinSpawnChance: 0.3
-  powerUpSpawnChance: 0.01
-  objectYOffset: 0.8
-  horizontalRange: 3
-  minYSpacing: 1.5
-  maxYSpacing: 3
-  platformWidth: 2
 --- !u!114 &3693256513291450727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2669,21 +2614,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: 0
---- !u!4 &4511272073765079612
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7514389624681700805}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 251166265}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5033115782178424774
 GameObject:
   m_ObjectHideFlags: 0
@@ -2696,52 +2626,6 @@ GameObject:
   - component: {fileID: 6858083402379038694}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5649133845250028513
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6203987245793494649}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 251166265}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5752226182170826325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7514389624681700805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21c2eefd4a063f94ca65a5a2cea03605, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
-  scoreText: {fileID: 0}
---- !u!1 &6203987245793494649
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5649133845250028513}
-  - component: {fileID: 3589395693072309232}
-  m_Layer: 0
-  m_Name: PlatformSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2773,23 +2657,6 @@ MonoBehaviour:
     pitch: 0
     loop: 0
     source: {fileID: 0}
---- !u!1 &7514389624681700805
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4511272073765079612}
-  - component: {fileID: 5752226182170826325}
-  m_Layer: 0
-  m_Name: ScoreManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!114 &7594694558517541629
 MonoBehaviour:
   m_ObjectHideFlags: 0

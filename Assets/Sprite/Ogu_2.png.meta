@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 590640a04da60084c9cbec4f8ca27e24
+guid: d65f8b601f6680842aa20e280b25ad1c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7088191770784263116
-    second: Buttons_2_0
-  - first:
-      213: 8352587340909930176
-    second: Buttons_2_1
+      213: -5721360878634080992
+    second: Ogu_2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -129,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Buttons_2_0
+      name: Ogu_2_0
       rect:
         serializedVersion: 2
-        x: 228
-        y: 535
-        width: 59
-        height: 47
+        x: 121
+        y: 21
+        width: 1862
+        height: 1792
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,30 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ccb61755cd05e5260800000000000000
-      internalID: 7088191770784263116
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Buttons_2_1
-      rect:
-        serializedVersion: 2
-        x: 231
-        y: 471
-        width: 65
-        height: 63
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0c66c52cee95ae370800000000000000
-      internalID: 8352587340909930176
+      spriteID: 025e23d0894a990b0800000000000000
+      internalID: -5721360878634080992
       vertices: []
       indices: 
       edges: []
@@ -185,9 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Buttons_2_0: 7088191770784263116
-      Buttons_2_1: 8352587340909930176
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

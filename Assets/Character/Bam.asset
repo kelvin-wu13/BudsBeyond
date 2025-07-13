@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterID: 2
   characterName: Bam
-  characterDisplayPrefab: {fileID: 0}
-  characterGamePrefab: {fileID: 0}
+  characterDisplayPrefab: {fileID: 7913024745916511269, guid: ab51fb4e8d694e94e926eacf2d0486e7, type: 3}
+  characterGamePrefab: {fileID: 8934331966593528518, guid: b055de68a00d7c745951d719e60870fb, type: 3}
   unlockPrice: 100
   isUnlockedByDefault: 0
   jumpSpeed: 5
-  powerUpPrefab: {fileID: 0}
+  powerUpPrefab: {fileID: 7820888037188879197, guid: 5cb339b409b70b14482336e12b7c95e0, type: 3}

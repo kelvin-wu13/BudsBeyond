@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterID: 1
   characterName: Biggie
-  characterDisplayPrefab: {fileID: 0}
-  characterGamePrefab: {fileID: 0}
+  characterDisplayPrefab: {fileID: 780726238954396912, guid: 18a7c935756a1fb42b33230a929bba0b, type: 3}
+  characterGamePrefab: {fileID: 8934331966593528518, guid: 3604f06cd0e99de40af86d7b2538da18, type: 3}
   unlockPrice: 50
   isUnlockedByDefault: 0
   jumpSpeed: 5

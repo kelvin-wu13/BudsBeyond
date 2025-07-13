@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterID: 3
   characterName: Ogu
-  characterDisplayPrefab: {fileID: 0}
-  characterGamePrefab: {fileID: 0}
+  characterDisplayPrefab: {fileID: 6714554340810590347, guid: cb04cd8263f10f4489f1b7e4d88a3356, type: 3}
+  characterGamePrefab: {fileID: 8934331966593528518, guid: ce8b30b96a9e8d54eb915dc6087f782b, type: 3}
   unlockPrice: 200
   isUnlockedByDefault: 0
   jumpSpeed: 5

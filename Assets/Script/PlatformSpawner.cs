@@ -39,7 +39,13 @@ public class PlatformSpawner : MonoBehaviour
 
     void Start()
     {
+
+    }
+
+    public void ActivateSpawner()
+    {
         lastSafePlatformPosition = transform.position;
+        // We will spawn the first platform here instead
         GameObject firstPlatform = Instantiate(normalPlatformPrefabs[0], transform.position, Quaternion.identity);
         TrySpawnObjectOnPlatform(firstPlatform);
         nextRowY = transform.position.y;

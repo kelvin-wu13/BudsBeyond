@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterID: 0
   characterName: Tappy
-  characterDisplayPrefab: {fileID: 0}
-  characterGamePrefab: {fileID: 0}
+  characterDisplayPrefab: {fileID: 1583925660462589850, guid: 657d9ca1f1645074cab58c72ec5b6f7f, type: 3}
+  characterGamePrefab: {fileID: 8934331966593528518, guid: b8424b6c34f63c044b553ebcfe8dd854, type: 3}
   unlockPrice: 0
   isUnlockedByDefault: 1
   jumpSpeed: 10
