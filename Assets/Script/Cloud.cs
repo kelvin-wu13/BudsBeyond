@@ -8,7 +8,7 @@ public class Cloud : MonoBehaviour
     void Start()
     {
         offScreenX = (Camera.main.orthographicSize * Screen.width / Screen.height) + 5f;
-        if (transform.position.x > 0)
+        if (transform.position.y > 0)
         {
             speed = -Mathf.Abs(speed);
         }

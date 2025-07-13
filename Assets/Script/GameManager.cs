@@ -1,32 +1,27 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
-    [Header("Game Objects")]
     public GameObject initialBackground;
-    public GameObject mainGameplayBackground;
+    public List<GameObject> mainGameplayBackgrounds;
     public PlatformSpawner platformSpawner;
-    public BackgroundFollow backgroundFollower;
-
-    [Header("Settings")]
-    [Tooltip("How long to wait after launch before starting the game (in seconds).")]
     public float gameplayStartDelay = 1.5f;
 
     void Awake()
     {
-        if (instance == null) instance = this;
-        else Destroy(gameObject);
+        if (instance == null) { instance = this; }
+        else { Destroy(gameObject); }
     }
 
     void Start()
     {
+        Time.timeScale = 1f;
         initialBackground.SetActive(true);
-        mainGameplayBackground.SetActive(false);
         platformSpawner.enabled = false;
-        backgroundFollower.enabled = false;
+        foreach (GameObject bg in mainGameplayBackgrounds) { bg.SetActive(false); }
     }
 
     public void StartGameplay()
@@ -38,12 +33,18 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(gameplayStartDelay);
 
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayBGM("In-Game");
+        }
+
         initialBackground.SetActive(false);
-        mainGameplayBackground.SetActive(true);
+        if (mainGameplayBackgrounds.Count > 0)
+        {
+            mainGameplayBackgrounds[Random.Range(0, mainGameplayBackgrounds.Count)].SetActive(true);
+        }
 
         platformSpawner.ActivateSpawner();
         platformSpawner.enabled = true;
-
-        backgroundFollower.enabled = true;
     }
 }

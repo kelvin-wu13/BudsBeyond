@@ -35,5 +35,10 @@ public class PlayerSpawner : MonoBehaviour
         {
             platformSpawner.playerTransform = playerInstance.transform;
         }
+
+        if (UI_InputBridge.instance != null && playerInstance != null)
+        {
+            UI_InputBridge.instance.ConnectPlayer(playerInstance.GetComponent<MobileInputHandler>());
+        }
     }
 }

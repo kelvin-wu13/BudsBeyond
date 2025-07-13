@@ -140,6 +140,12 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         if (characterData == null) return;
+
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySFX("Jump");
+        }
+
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, characterData.jumpSpeed);
     }
 

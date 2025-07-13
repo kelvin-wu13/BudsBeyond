@@ -299,6 +299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 319071789}
   - component: {fileID: 319071790}
+  - component: {fileID: 319071791}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -333,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83bd0fe6c9eac44f9e2d5118235b823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSceneName: GameScene
+  gameSceneName: Tester
   characterList:
   - {fileID: 11400000, guid: b73dcda68041c2d43b21e1ce73422e25, type: 2}
   - {fileID: 11400000, guid: d54ce9ebd28835a4e9d1852846c31d88, type: 2}
@@ -343,6 +344,18 @@ MonoBehaviour:
   totalCoinsText: {fileID: 136558138}
   playUnlockButton: {fileID: 633232420}
   playUnlockButtonText: {fileID: 571827129}
+--- !u!114 &319071791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319071788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2022e4370cbb94ca0c64eb23ea057b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,7 +705,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 633232418}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 319071791}
+        m_TargetAssemblyTypeName: UI_SFX_Player, Assembly-CSharp
+        m_MethodName: PlayButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &738191379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,6 +1229,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 319071791}
+        m_TargetAssemblyTypeName: UI_SFX_Player, Assembly-CSharp
+        m_MethodName: PlayButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1091088916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1578,7 +1615,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3664673084553716565, guid: 9e265d65e1641c64a8b71a88ed6fd519, type: 3}
+  m_Sprite: {fileID: -1425357277894626851, guid: e561e3578ed8b634eaa2a05cb560d497, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1598,8 +1635,8 @@ Transform:
   m_GameObject: {fileID: 1619645326}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1.0512, z: 0}
+  m_LocalScale: {x: 1, y: 1.0341, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1818,6 +1855,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 319071791}
+        m_TargetAssemblyTypeName: UI_SFX_Player, Assembly-CSharp
+        m_MethodName: PlayButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1753198045
@@ -2645,18 +2694,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundMusic:
   - name: Main Menu
-    clip: {fileID: 8300000, guid: 22f43c881f67800469d8d5047363c386, type: 3}
-    volume: 0.5
+    clip: {fileID: 8300000, guid: aff8f48a20e4aa24399cb5bffa64cf70, type: 3}
+    volume: 0.35
     pitch: 3
     loop: 1
-    source: {fileID: 0}
+  - name: In-Game
+    clip: {fileID: 8300000, guid: fc8d9269f25f2b744bb995c5d3135e15, type: 3}
+    volume: 0.7
+    pitch: 3
+    loop: 1
   soundEffects:
   - name: Jump
-    clip: {fileID: 8300000, guid: 9e37de66f424da849b71e09a5e8cdb37, type: 3}
+    clip: {fileID: 8300000, guid: 4ab5469a9d3c1dc48a5938ac7296422b, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 3
     loop: 0
-    source: {fileID: 0}
+  - name: Button
+    clip: {fileID: 8300000, guid: dc9fb86083c566743a503e77d4ca1c72, type: 3}
+    volume: 1
+    pitch: 3
+    loop: 0
 --- !u!114 &7594694558517541629
 MonoBehaviour:
   m_ObjectHideFlags: 0
