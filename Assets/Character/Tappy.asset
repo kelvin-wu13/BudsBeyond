@@ -18,5 +18,5 @@ MonoBehaviour:
   characterGamePrefab: {fileID: 8934331966593528518, guid: b8424b6c34f63c044b553ebcfe8dd854, type: 3}
   unlockPrice: 0
   isUnlockedByDefault: 1
-  jumpSpeed: 10
+  jumpSpeed: 11
   powerUpPrefab: {fileID: 1347209321816359796, guid: ab1c87f590947f041beac11d4b8f7e02, type: 3}

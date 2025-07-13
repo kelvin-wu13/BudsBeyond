@@ -2663,23 +2663,23 @@ MonoBehaviour:
   - name: Main Menu
     clip: {fileID: 8300000, guid: aff8f48a20e4aa24399cb5bffa64cf70, type: 3}
     volume: 0.35
-    pitch: 3
+    pitch: 1
     loop: 1
   - name: In-Game
     clip: {fileID: 8300000, guid: fc8d9269f25f2b744bb995c5d3135e15, type: 3}
     volume: 0.7
-    pitch: 3
+    pitch: 1
     loop: 1
   soundEffects:
   - name: Jump
     clip: {fileID: 8300000, guid: 4ab5469a9d3c1dc48a5938ac7296422b, type: 3}
     volume: 1
-    pitch: 3
+    pitch: 1
     loop: 0
   - name: Button
     clip: {fileID: 8300000, guid: dc9fb86083c566743a503e77d4ca1c72, type: 3}
     volume: 1
-    pitch: 3
+    pitch: 1
     loop: 0
 --- !u!114 &8556466672635749974
 MonoBehaviour:
