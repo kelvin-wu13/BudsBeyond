@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayBGM("In-Game");
+        }
+
         Time.timeScale = 1f;
         initialBackground.SetActive(true);
         platformSpawner.enabled = false;
@@ -32,11 +37,6 @@ public class GameManager : MonoBehaviour
     private IEnumerator StartGameplayRoutine()
     {
         yield return new WaitForSeconds(gameplayStartDelay);
-
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.PlayBGM("In-Game");
-        }
 
         initialBackground.SetActive(false);
         if (mainGameplayBackgrounds.Count > 0)
